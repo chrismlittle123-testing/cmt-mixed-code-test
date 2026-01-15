@@ -1,0 +1,14 @@
+[project]
+name = "monorepo-test"
+version = "1.0.0"
+description = "MONO-002: Monorepo with shared dependencies"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ruff>=0.3.0",
+]
+
+[tool.ruff]
+line-length = 100

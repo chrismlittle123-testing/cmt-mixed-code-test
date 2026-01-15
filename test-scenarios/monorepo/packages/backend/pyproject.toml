@@ -1,0 +1,8 @@
+[project]
+name = "monorepo-backend"
+version = "1.0.0"
+description = "MONO-001: Backend Python package"
+requires-python = ">=3.10"
+
+[tool.ruff]
+line-length = 100

@@ -1,0 +1,17 @@
+# GLK-MIX-003: Secret in Config File (YAML)
+# These secrets should be detected by Gitleaks
+
+name: GLK-MIX-003 Settings
+description: These secrets should be detected by Gitleaks
+
+api:
+  key: sk-secret123456789abcdef
+  endpoint: https://api.example.com
+
+aws:
+  accessKeyId: AKIAIOSFODNN7EXAMPLE
+  secretAccessKey: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+  region: us-east-1
+
+database:
+  connectionString: postgres://user:password123@localhost:5432/mydb

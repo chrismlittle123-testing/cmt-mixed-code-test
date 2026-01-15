@@ -1,0 +1,13 @@
+{
+  "name": "monorepo-test",
+  "version": "1.0.0",
+  "description": "MONO-002: Monorepo with shared dependencies",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "eslint": "^9.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "@monorepo/frontend",
+  "version": "1.0.0",
+  "description": "MONO-001: Frontend TypeScript package",
+  "main": "src/index.ts",
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  }
+}

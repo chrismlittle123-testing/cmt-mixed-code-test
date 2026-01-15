@@ -1,0 +1,22 @@
+# MONO-003: Root-level check.toml
+# Single configuration file for entire monorepo
+
+[code.linting.eslint]
+enabled = true
+files = ["packages/frontend/**/*.ts"]
+
+[code.linting.ruff]
+enabled = true
+
+[code.types.tsc]
+enabled = true
+
+[code.types.ty]
+enabled = true
+
+[code.security.secrets]
+enabled = true
+
+[code.tests]
+enabled = true
+pattern = "**/*.{test,spec}.ts,**/test_*.py"

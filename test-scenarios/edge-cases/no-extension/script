@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+/**
+ * EDGE-005: Files Without Extension
+ * This file has no extension and should not be checked by language-specific tools
+ */
+
+console.log("This is a script without extension");

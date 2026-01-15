@@ -1,0 +1,7 @@
+#!/usr/bin/env python3
+"""
+EDGE-005: Files Without Extension (Python)
+This file has no extension and should not be checked by language-specific tools
+"""
+
+print("This is a Python script without extension")

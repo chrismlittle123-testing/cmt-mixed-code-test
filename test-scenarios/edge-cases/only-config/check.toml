@@ -1,0 +1,8 @@
+# EDGE-003: Only Config Files
+# This directory only has configuration files, no source code
+
+[code.linting.eslint]
+enabled = true
+
+[code.linting.ruff]
+enabled = true

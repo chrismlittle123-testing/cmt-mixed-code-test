@@ -1,0 +1,67 @@
+# Mixed Language CODE Domain Configuration
+# Tests check-my-toolkit CODE domain features in mixed TypeScript + Python projects
+
+# =============================================================================
+# TypeScript Tools
+# =============================================================================
+
+[code.linting.eslint]
+enabled = true
+files = ["src/typescript/**/*.ts"]
+
+[code.formatting.prettier]
+enabled = true
+
+[code.types.tsc]
+enabled = true
+
+[code.unused.knip]
+enabled = true
+
+[code.security.npmaudit]
+enabled = true
+
+# =============================================================================
+# Python Tools
+# =============================================================================
+
+[code.linting.ruff]
+enabled = true
+format = true
+
+[code.types.ty]
+enabled = true
+
+[code.unused.vulture]
+enabled = true
+
+[code.security.pipaudit]
+enabled = true
+
+# =============================================================================
+# Language-agnostic Tools
+# =============================================================================
+
+[code.security.secrets]
+enabled = true
+
+[code.tests]
+enabled = true
+pattern = "**/*.{test,spec}.ts,**/test_*.py"
+
+[code.naming]
+enabled = true
+
+[[code.naming.rules]]
+extensions = ["ts", "tsx"]
+file_case = "kebab-case"
+folder_case = "kebab-case"
+
+[[code.naming.rules]]
+extensions = ["py"]
+file_case = "snake_case"
+folder_case = "snake_case"
+
+[code.quality.disable-comments]
+enabled = true
+extensions = ["ts", "tsx", "js", "jsx", "py"]
