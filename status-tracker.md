@@ -8,7 +8,7 @@ This file tracks the implementation and testing status for all test cases in TES
 - [x] Completed / Verified
 - [!] Blocked/Issue found
 
-**Last Updated:** 2026-01-15 (after second cm code check run)
+**Last Updated:** 2026-01-19 (after check-my-toolkit v1.3.0 upgrade)
 
 ---
 
@@ -27,7 +27,7 @@ This file tracks the implementation and testing status for all test cases in TES
 | TypeScript test files | [x] | index.test.ts |
 | Python test files | [x] | test_main.py |
 | Test scenarios directory | [x] | test-scenarios/ with all fixture files |
-| npm dependencies installed | [x] | 180 packages |
+| pnpm dependencies installed | [x] | 199 packages (migrated from npm) |
 | Python venv + dependencies | [x] | pytest, ruff, vulture |
 
 ---
@@ -156,6 +156,40 @@ This file tracks the implementation and testing status for all test cases in TES
 | Edge Cases | 5 | 5 |
 | Monorepo | 3 | 3 |
 | **TOTAL** | **39** | **39** |
+
+---
+
+## check-my-toolkit v1.3.0 Results (2026-01-19)
+
+```
+check-my-toolkit v1.3.0
+
+Tool Results:
+- ESLint: 3 violations (console statements)
+- Ruff: 43 violations (import sorting, deprecated typing)
+- Ruff Format: 1 violation
+- Prettier: 11 violations (formatting)
+- TypeScript: PASSED
+- ty: 43 violations (type errors)
+- Knip: 20 violations (unused test files)
+- Vulture: 64 violations
+- gitleaks: 5 violations (all test secrets detected!)
+- pnpmaudit: PASSED (migrated from npmaudit)
+- pipaudit: PASSED
+- Coverage Run: PASSED (16.5% > 10% threshold)
+- Naming: 10 violations (case violations)
+- Disable Comments: 32 violations (all detected!)
+```
+
+### New Features Verified (v1.0.1 → v1.3.0)
+
+| Feature | Version | Status |
+|---------|---------|--------|
+| `cm dependencies` command | v1.2.0 | ✓ Working |
+| `cm validate tier` command | v1.3.0 | ✓ Working |
+| `pnpmaudit` (replaced npmaudit) | v1.1.0 | ✓ Working |
+| `exclude_dev` option | v1.1.0 | ✓ Configured |
+| `coverage_run` (replaced tests) | v1.2.0 | ✓ Working |
 
 ---
 
