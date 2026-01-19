@@ -18,8 +18,9 @@ enabled = true
 [code.unused.knip]
 enabled = true
 
-[code.security.npmaudit]
+[code.security.pnpmaudit]
 enabled = true
+exclude_dev = true
 
 # =============================================================================
 # Python Tools
@@ -45,9 +46,10 @@ enabled = true
 [code.security.secrets]
 enabled = true
 
-[code.tests]
+[code.coverage_run]
 enabled = true
-pattern = "**/*.{test,spec}.ts,**/test_*.py"
+min_threshold = 10
+command = "pnpm test:coverage"
 
 [code.naming]
 enabled = true
