@@ -8,6 +8,79 @@ This file tracks issues discovered during test implementation and execution.
 
 ## Open Issues
 
+### BUG-011: CRITICAL - forbidden_files Feature Completely Non-Functional (v1.4.0)
+
+**Severity:** Critical
+**Component:** Configuration Loader
+**Version:** 1.4.0
+
+**Description:**
+The new `forbidden_files` feature added in v1.4.0 is completely non-functional. The configuration for `[process.forbidden_files]` is silently dropped during config loading, meaning the feature never runs regardless of how it's configured.
+
+**Root Cause:**
+The `mergeProcess` function in `dist/config/loader.js` (lines 278-292) returns an object that includes all process domain configurations EXCEPT `forbidden_files`. The function merges:
+- hooks, ci, branches, commits, changesets, pr, tickets, coverage, repo, backups, codeowners, docs
+
+But `forbidden_files` is completely missing from the merge, so it's always undefined regardless of what's in `check.toml`.
+
+**Steps to Reproduce:**
+1. Create a `check.toml` with:
+```toml
+[process.forbidden_files]
+enabled = true
+files = [".env", ".env.*", "**/secrets.json"]
+message = "Use secrets management instead"
+```
+2. Create forbidden files: `touch .env secrets.json`
+3. Run `cm process check`
+
+**Expected Behavior:**
+```
+✗ PROCESS
+  ✗ Forbidden Files: 2 violation(s)
+      error  Forbidden file exists: .env (matched pattern: .env). Use secrets management instead
+      error  Forbidden file exists: secrets.json (matched pattern: **/secrets.json). Use secrets management instead
+```
+
+**Actual Behavior:**
+```
+✓ PROCESS
+✓ All checks passed
+```
+
+With JSON output:
+```json
+{
+  "domains": {
+    "process": {
+      "status": "skip",
+      "checks": [],
+      "violationCount": 0
+    }
+  }
+}
+```
+
+**Impact:** CRITICAL - The entire v1.4.0 feature release is broken. Users who upgrade expecting forbidden files enforcement will have no protection.
+
+**Fix Required:**
+Add the following to `mergeProcess` function in `loader.js`:
+```typescript
+function mergeProcessForbiddenFiles(cp, dcp) {
+    const defaultForbiddenFiles = { enabled: false };
+    return mergeProcessSection(defaultForbiddenFiles, dcp?.forbidden_files, cp?.forbidden_files);
+}
+
+function mergeProcess(c, dc) {
+    return {
+        // ... existing merges ...
+        forbidden_files: mergeProcessForbiddenFiles(c.process, dc.process),
+    };
+}
+```
+
+---
+
 ### BUG-001: CRITICAL - Duplicate Extension Rules Silently Break Naming and Disable Comments Checks
 
 **Severity:** Critical
@@ -288,33 +361,22 @@ Validation should either:
 
 ---
 
-### BUG-010: Duplicate Extensions in Same Rule Array Accepted Without Warning
+### ~~BUG-010: Duplicate Extensions in Same Rule Array Accepted Without Warning~~ [FIXED in v1.3.1]
 
 **Severity:** Low
 **Component:** Configuration Validation
 **Version:** 1.3.0
+**Fixed in:** 1.3.1
 
 **Description:**
 A naming rule with duplicate extensions in the same array (e.g., `extensions = ["ts", "tsx", "ts"]`) passes validation without warning.
 
-**Steps to Reproduce:**
-1. Create config:
-```toml
-[[code.naming.rules]]
-extensions = ["ts", "tsx", "ts"]  # "ts" appears twice
-file_case = "kebab-case"
+**Resolution:**
+Fixed in v1.3.1 - Schema validation now rejects duplicate values in extension arrays with error:
 ```
-2. Run `cm validate config`
-
-**Expected Behavior:**
-Should warn about duplicate extensions within the same rule.
-
-**Actual Behavior:**
+✗ Invalid: Invalid check.toml configuration:
+  - code.naming.rules.0.extensions: Duplicate values not allowed
 ```
-✓ Valid
-```
-
-**Test Case:** `bug-hunting-tests/test-configs/single-ext-overlap.toml`
 
 ---
 
@@ -405,6 +467,35 @@ This may be expected gitleaks behavior or a configuration issue rather than a bu
 
 ---
 
+## Test Execution Summary (2026-01-19) - check-my-toolkit v1.4.0
+
+### v1.4.0 New Feature Testing
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| forbidden_files | **BROKEN** | BUG-011: Config dropped during merge, feature completely non-functional |
+
+### v1.3.1 Bug Fix Verification
+
+| Bug | Fix Status | Verified |
+|-----|------------|----------|
+| Duplicate extension validation in schema | FIXED | Yes - now rejects `["ts", "ts"]` |
+| undefined exitCode handling in coverage-run | FIXED | See v1.3.1 changelog |
+| Virtual environment exclusion in vulture | FIXED | See v1.3.1 changelog |
+| Deduplicated extensions in glob patterns | FIXED | See v1.3.1 changelog |
+| Symlink detection in ruff and ty | FIXED | See v1.3.1 changelog |
+| Comment-aware pattern detection | FIXED | See v1.3.1 changelog |
+| Non-greedy scope regex in commits | FIXED | Verified working |
+| Word boundary validation in issue reference | FIXED | See v1.3.1 changelog |
+| Frontmatter delimiter error messages | FIXED | See v1.3.1 changelog |
+| CODEOWNERS line reporting | FIXED | See v1.3.1 changelog |
+| YAML parse error reporting in CI | FIXED | See v1.3.1 changelog |
+| Dynamic branch examples from config | FIXED | See v1.3.1 changelog |
+
+---
+
 ## Closed Issues
 
-*None*
+### BUG-010: Duplicate Extensions in Same Rule Array - FIXED in v1.3.1
+
+See entry above in Open Issues (marked as fixed).

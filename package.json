@@ -27,5 +27,8 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "check-my-toolkit": "1.4.0"
   }
 }
