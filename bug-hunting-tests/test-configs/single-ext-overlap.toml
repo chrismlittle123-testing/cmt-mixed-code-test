@@ -1,0 +1,13 @@
+# Test: Same extension in different array positions
+[code.naming]
+enabled = true
+
+[[code.naming.rules]]
+extensions = ["ts", "tsx", "ts"]  # "ts" appears twice in same rule
+file_case = "kebab-case"
+folder_case = "kebab-case"
+
+[[code.naming.rules]]
+extensions = ["py"]
+file_case = "snake_case"
+folder_case = "snake_case"

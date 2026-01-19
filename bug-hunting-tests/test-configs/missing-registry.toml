@@ -1,0 +1,6 @@
+# Config with extends but no registry
+[extends]
+rulesets = ["some-ruleset.toml"]
+
+[code.linting.eslint]
+enabled = true

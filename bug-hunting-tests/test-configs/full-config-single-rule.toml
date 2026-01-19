@@ -1,0 +1,21 @@
+# Full config with single naming rule
+[code.linting.eslint]
+enabled = true
+files = ["**/*.ts", "**/*.tsx"]
+
+[code.linting.ruff]
+enabled = true
+format = true
+
+[code.naming]
+enabled = true
+
+[[code.naming.rules]]
+extensions = ["ts", "tsx"]
+file_case = "kebab-case"
+folder_case = "kebab-case"
+
+[[code.naming.rules]]
+extensions = ["py"]
+file_case = "snake_case"
+folder_case = "snake_case"

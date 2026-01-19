@@ -1,0 +1,5 @@
+# Negative coverage threshold
+[code.coverage_run]
+enabled = true
+min_threshold = -50
+command = "pnpm test:coverage"

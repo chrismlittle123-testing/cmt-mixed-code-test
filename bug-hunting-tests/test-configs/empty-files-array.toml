@@ -1,0 +1,12 @@
+# Empty files array
+[code.linting.eslint]
+enabled = true
+files = []
+
+[code.naming]
+enabled = true
+
+[[code.naming.rules]]
+extensions = []  # Empty extensions array
+file_case = "kebab-case"
+folder_case = "kebab-case"

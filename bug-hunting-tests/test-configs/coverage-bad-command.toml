@@ -1,0 +1,5 @@
+# Coverage with non-existent command
+[code.coverage_run]
+enabled = true
+min_threshold = 10
+command = "nonexistent-command-that-doesnt-exist"

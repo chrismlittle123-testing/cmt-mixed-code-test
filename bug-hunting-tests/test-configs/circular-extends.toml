@@ -1,0 +1,7 @@
+# Config that tries to extend itself (circular reference)
+[extends]
+registry = "."
+rulesets = ["circular-extends.toml"]
+
+[code.linting.eslint]
+enabled = true

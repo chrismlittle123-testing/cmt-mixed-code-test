@@ -1,0 +1,3 @@
+# Invalid TOML - unclosed bracket
+[code.linting.eslint
+enabled = true

@@ -1,0 +1,6 @@
+# Unknown tool name
+[code.linting.nonexistent_tool]
+enabled = true
+
+[code.types.fake_checker]
+enabled = true

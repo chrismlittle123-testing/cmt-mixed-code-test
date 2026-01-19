@@ -1,0 +1,8 @@
+# Wrong value types
+[code.linting.eslint]
+enabled = "yes"  # Should be boolean
+
+[code.coverage_run]
+enabled = true
+min_threshold = "ten"  # Should be number
+command = 123  # Should be string

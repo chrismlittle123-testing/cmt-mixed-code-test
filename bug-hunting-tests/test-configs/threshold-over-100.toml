@@ -1,0 +1,5 @@
+# Coverage threshold over 100
+[code.coverage_run]
+enabled = true
+min_threshold = 150
+command = "pnpm test:coverage"

@@ -1,0 +1,16 @@
+# Monorepo test config
+[code.linting.eslint]
+enabled = true
+files = ["packages/frontend/**/*.ts"]
+
+[code.linting.ruff]
+enabled = true
+
+[code.types.tsc]
+enabled = true
+
+[code.types.ty]
+enabled = true
+
+[code.security.secrets]
+enabled = true
