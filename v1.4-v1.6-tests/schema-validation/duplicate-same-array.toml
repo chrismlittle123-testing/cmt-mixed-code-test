@@ -1,0 +1,10 @@
+# Test schema validation for duplicate extensions in same array
+# This should FAIL validation
+
+[code.naming]
+enabled = true
+
+[[code.naming.rules]]
+extensions = ["ts", "tsx", "ts"]  # "ts" appears twice
+file_case = "kebab-case"
+folder_case = "kebab-case"

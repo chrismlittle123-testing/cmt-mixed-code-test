@@ -1,0 +1,9 @@
+# Test with special characters in patterns
+
+[process.forbidden_files]
+enabled = true
+files = [
+    "file with spaces.txt",
+    "file[with]brackets.txt",
+    "file$dollar.txt"
+]

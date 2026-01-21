@@ -1,0 +1,5 @@
+# Test configuration for vulture exclusions
+# Tests that .venv, venv, node_modules, etc. are excluded
+
+[code.unused.vulture]
+enabled = true

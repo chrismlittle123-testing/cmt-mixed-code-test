@@ -1,0 +1,11 @@
+# Test configuration WITHOUT allow_dynamic_routes
+# Dynamic route folders should be flagged as violations
+
+[code.naming]
+enabled = true
+
+[[code.naming.rules]]
+extensions = ["ts", "tsx"]
+file_case = "kebab-case"
+folder_case = "kebab-case"
+allow_dynamic_routes = false

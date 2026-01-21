@@ -1,0 +1,6 @@
+# Test with empty files array - should pass
+
+[process.forbidden_files]
+enabled = true
+files = []
+message = "Test"

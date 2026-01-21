@@ -1,0 +1,20 @@
+# Test configuration for forbidden_files feature
+# Testing various glob patterns and edge cases
+
+[process.forbidden_files]
+enabled = true
+files = [
+    ".env",
+    ".env.*",
+    "**/.env",
+    "**/.env.*",
+    "**/secrets.json",
+    "**/credentials.yaml",
+    "**/*.pem",
+    "**/id_rsa",
+    "**/id_rsa.pub",
+    "**/.aws/credentials",
+    "**/config/production.secret.js"
+]
+ignore = ["**/node_modules/**", "**/.git/**", "**/test-exceptions/**"]
+message = "Sensitive files must not be committed. Use environment variables or secrets management."

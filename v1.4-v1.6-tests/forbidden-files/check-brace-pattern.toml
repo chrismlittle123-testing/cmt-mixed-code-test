@@ -1,0 +1,6 @@
+# Test with empty pattern - should fail validation
+
+[process.forbidden_files]
+enabled = true
+files = [""]
+message = "Test"

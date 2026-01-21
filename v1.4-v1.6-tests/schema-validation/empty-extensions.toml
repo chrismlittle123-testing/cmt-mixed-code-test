@@ -1,0 +1,9 @@
+# Test empty extensions array
+
+[code.naming]
+enabled = true
+
+[[code.naming.rules]]
+extensions = []
+file_case = "kebab-case"
+folder_case = "kebab-case"

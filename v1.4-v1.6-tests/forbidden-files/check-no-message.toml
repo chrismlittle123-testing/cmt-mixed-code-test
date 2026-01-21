@@ -1,0 +1,5 @@
+# Test without custom message
+
+[process.forbidden_files]
+enabled = true
+files = [".env"]

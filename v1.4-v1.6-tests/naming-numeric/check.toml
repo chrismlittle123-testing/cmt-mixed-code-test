@@ -1,0 +1,10 @@
+# Test configuration for numeric file names
+# Tests that 404.tsx, 500.tsx, etc. are allowed
+
+[code.naming]
+enabled = true
+
+[[code.naming.rules]]
+extensions = ["ts", "tsx"]
+file_case = "kebab-case"
+folder_case = "kebab-case"

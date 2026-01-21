@@ -1,0 +1,7 @@
+# Test with alternative ignore pattern format
+
+[process.forbidden_files]
+enabled = true
+files = ["**/.env", "**/secrets.json"]
+ignore = ["test-exceptions/**"]
+message = "Test message"

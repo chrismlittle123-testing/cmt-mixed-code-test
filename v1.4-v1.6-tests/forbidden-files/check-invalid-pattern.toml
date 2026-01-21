@@ -1,0 +1,6 @@
+# Test with invalid glob pattern
+
+[process.forbidden_files]
+enabled = true
+files = ["[invalid-unclosed-bracket"]
+message = "Test"
